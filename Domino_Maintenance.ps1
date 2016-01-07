@@ -27,16 +27,6 @@
 	
    LAST failed: trying to find the fucking error message for TRY/CATCH at Get-ItemProperty. Giving up temporarily.
 
-   Changelog 07 -> 0.8
-	argument order changed
-	added argument WAIT
-	change argument DOMINO abandoned, domino shutdown is ALWAYS necessary
-	added argument UP
-	added argument OWNLIST
-	copy some system dbs to	BACKUP is true only when backup path is given
-	removing temp files is mandatory now
-	changed REMOVE to FTDEL what affects FT folders only now
-   
 .PARAMETER Debug
    Boolean - as it says. debugging gives console out and waits for keystrokes
 .EXAMPLE
@@ -61,7 +51,6 @@ param(
 	[string]$backup = "",			# "" => do not backup/move some system dbs						[string] => move to the given path (if exists)
 	[bool]$newlist = $TRUE,
 	[bool]$remove = $TRUE
-
 )
 
 <#
@@ -104,6 +93,11 @@ Function Get-DatabaseList ($WorkFolder) {
 		Get-Content $Dom_Data\$DatabaseList
 	}
 	$global:DatabaseList = $DatabaseList
+}
+Function Get-AppFolders () {
+	# Find Domino binary
+	# Find Domino data
+	# Find Domino TxLog
 }
 
 <#
